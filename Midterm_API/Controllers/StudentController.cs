@@ -58,7 +58,7 @@ namespace Midterm_API.Controllers
         public IActionResult Delete(int id)
         {
             _studentService.DeleteStudent(id);
-            return Oks();
+            return Ok();
         }
         //DELETE
         //Create DeleteStudent endpoint here
