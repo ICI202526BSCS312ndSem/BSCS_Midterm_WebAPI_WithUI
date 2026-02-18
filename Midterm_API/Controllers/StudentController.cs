@@ -58,9 +58,7 @@ namespace Midterm_API.Controllers
         }
 
 
-        //DELETE
-        //Create DeleteStudent endpoint here
-        //Accept "id" as parameter
+       
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
