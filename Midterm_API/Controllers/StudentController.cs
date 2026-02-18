@@ -45,9 +45,7 @@ namespace Midterm_API.Controllers
             return Created();
         }
 
-        //PUT
-        //Create UpdateStudent endpoint here
-        //Accept "id" as parameter and Student object as body
+
 
         [HttpPut("{id}")]
 
