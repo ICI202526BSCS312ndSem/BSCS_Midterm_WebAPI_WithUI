@@ -47,6 +47,7 @@ namespace Midterm_API.Controllers
             student.Id = id;
             _studentService.UpdateStudent(student);
             return student == null ? NotFound() : Ok();
+
         }
 
         //Delete one student record.
