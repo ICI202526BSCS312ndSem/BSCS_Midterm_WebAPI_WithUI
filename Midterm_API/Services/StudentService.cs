@@ -1,4 +1,4 @@
-﻿using Midterm_API.DAL;
+using Midterm_API.DAL;
 using Midterm_API.Entities;
 
 namespace Midterm_API.Services
@@ -16,6 +16,34 @@ namespace Midterm_API.Services
         {
             return _repository.GetAll().OrderByDescending(p => p.Id);
         }
+
+        internal void AddStudent(Student student)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void AddStudent(object student)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void DeleteStudent(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal object GetStudentById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void UpdateStudent(Student student)
+        {
+            throw new NotImplementedException();
+        }
+
+       
+
 
         //Create GetSingleStudent method here
         //Accept "id" as parameter and return Student
