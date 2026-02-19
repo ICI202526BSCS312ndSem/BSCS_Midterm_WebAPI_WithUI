@@ -14,7 +14,7 @@ namespace Midterm_API.Controllers
         {
             _studentService = studentService;
         }
-
+    
         [HttpGet]
         public IActionResult Get()
         {
@@ -67,7 +67,7 @@ namespace Midterm_API.Controllers
             _studentService.RemoveStudent(id);
             return Ok();
         }
-
+        // hi beyb
        
     }
 }
