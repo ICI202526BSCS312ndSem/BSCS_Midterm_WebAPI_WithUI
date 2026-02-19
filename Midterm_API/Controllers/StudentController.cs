@@ -1,4 +1,7 @@
+
+
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using Midterm_API.Entities;
 using Midterm_API.Services;
 
@@ -20,27 +23,29 @@ namespace Midterm_API.Controllers
         {
             return Ok(_studentService.GetAllStudents());
         }
+        [HttpPost]
+        public IActionResult Post([FromBody] Student student)
+        {
+            _studentService.CreateStudent(student);
+            return Ok();
+        }
 
-        //GET
-        //Create GetSingle endpoint here with "id" as parameter
-        //return OK if found, NotFound if not found
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody] Student student)
+        {
+            student.Id = id;
+            _studentService.UpdateStudent(student);
+            return Ok();
+        }
 
-
-        //POST
-        //Create AddStudent endpoint here
-        //Accept Student object as parameter
-
-
-
-        //PUT
-        //Create UpdateStudent endpoint here
-        //Accept "id" as parameter and Student object as body
-
-
-
-        //DELETE
-        //Create DeleteStudent endpoint here
-        //Accept "id" as parameter
-       
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _studentService.RemoveStudent(id);
+            return Ok();
+        }
     }
 }
+
+
+
