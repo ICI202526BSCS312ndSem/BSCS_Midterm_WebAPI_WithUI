@@ -17,8 +17,14 @@ namespace Midterm_API.Services
             return _repository.GetAll().OrderByDescending(p => p.Id);
         }
 
-        //Create GetSingleStudent method here
-        //Accept "id" as parameter and return Student
+        public Student GetSingleStudent(int id) => _repository.GetById(id);
+        public void CreateStudent(Student student) => _repository.Add(student);
+
+        public void UpdateStudent(Student student) => _repository.Update(student);
+
+        public void DeleteStudent(int id) => _repository.Delete(id);
+
+       
 
 
 
