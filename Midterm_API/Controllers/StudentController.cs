@@ -25,7 +25,7 @@ namespace Midterm_API.Controllers
         //Create GetSingle endpoint here with "id" as parameter
         //return OK if found, NotFound if not found
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public IActionResult GetSingle(int id)
         {
             var existingStudent = _studentService.GetSingleStudent(id);
             if (existingStudent != null)
@@ -42,7 +42,7 @@ namespace Midterm_API.Controllers
         //Create AddStudent endpoint here
         //Accept Student object as parameter
         [HttpPost]
-        public IActionResult Post([FromBody]Student student)
+        public IActionResult AddStudent([FromBody]Student student)
         {
             if(student == null)
             {
@@ -64,7 +64,7 @@ namespace Midterm_API.Controllers
         //Create UpdateStudent endpoint here
         //Accept "id" as parameter and Student object as body
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Student student)
+        public IActionResult UpdateStudent(int id, [FromBody] Student student)
         {
             if (student == null)
             {
@@ -87,7 +87,7 @@ namespace Midterm_API.Controllers
         //Create DeleteStudent endpoint here
         //Accept "id" as parameter
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult DeleteStudent(int id)
         {
             var existingStudent = _studentService.GetSingleStudent(id);
             if(existingStudent != null)
