@@ -52,7 +52,7 @@ namespace Midterm_API.Controllers
         {
             student.Id = id;
             _studentService.UpdateStudent(student);
-            return Ok(student);
+            return StatusCode(204);
 
         }
 
