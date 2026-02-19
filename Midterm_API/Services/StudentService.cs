@@ -17,22 +17,28 @@ namespace Midterm_API.Services
             return _repository.GetAll().OrderByDescending(p => p.Id);
         }
 
-        //Create GetSingleStudent method here
-        //Accept "id" as parameter and return Student
+        // 1. GetSingleStudent: Accept "id" as parameter and return Student
+        public Student GetSingleStudent(int id)
+        {
+            return _repository.GetById(id);
+        }
 
+        // 2. AddStudent: Accept Student object as parameter and return void
+        public void AddStudent(Student newStudent)
+        {
+            _repository.Add(newStudent);
+        }
 
+        // 3. UpdateStudent: Accept Student object as parameter and return void
+        public void UpdateStudent(Student updatedStudent)
+        {
+            _repository.Update(updatedStudent);
+        }
 
-        //Create AddStudent method here
-        //Accept Student object as parameter and return void
-
-
-
-        //Create UpdateStudent method here
-        //Accept Student object as parameter and return void
-
-
-
-        //Create DeleteStudent method here
-        //Accept "id" as parameter and return void
+        // 4. DeleteStudent: Accept "id" as parameter and return void
+        public void DeleteStudent(int id)
+        {
+            _repository.Delete(id);
+        }
     }
 }

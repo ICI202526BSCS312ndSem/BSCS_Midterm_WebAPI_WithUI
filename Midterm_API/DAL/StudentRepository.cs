@@ -20,6 +20,7 @@ namespace Midterm_API.DAL
                 Course = "BSCS",
                 Year = 2,
                 Section = 4 },
+         
         };
 
         public IEnumerable<Student> GetAll() => _students;

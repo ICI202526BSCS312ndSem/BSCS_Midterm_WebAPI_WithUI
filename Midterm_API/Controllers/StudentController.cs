@@ -21,26 +21,67 @@ namespace Midterm_API.Controllers
             return Ok(_studentService.GetAllStudents());
         }
 
-        //GET
-        //Create GetSingle endpoint here with "id" as parameter
-        //return OK if found, NotFound if not found
+        // GET: api/Student/5
+        [HttpGet("{id}")]
+        public IActionResult GetSingleStudent(int id)
+        {
+            var student = _studentService.GetSingleStudent(id);
 
+            if (student == null)
+            {
+                return NotFound($"Student with ID {id} was not found.");
+            }
 
-        //POST
-        //Create AddStudent endpoint here
-        //Accept Student object as parameter
+            return Ok(student);
+        }
 
+        // POST: api/Student
+        [HttpPost]
+        public IActionResult AddStudent([FromBody] Student newStudent)
+        {
+            if (newStudent == null)
+            {
+                return BadRequest("Invalid student data.");
+            }
 
+            _studentService.AddStudent(newStudent);
 
-        //PUT
-        //Create UpdateStudent endpoint here
-        //Accept "id" as parameter and Student object as body
+            // Return 201 Created and the student object
+            return CreatedAtAction(nameof(GetSingleStudent), new { id = newStudent.Id }, newStudent);
+        }
 
+        // PUT: api/Student/5
+        [HttpPut("{id}")]
+        public IActionResult UpdateStudent(int id, [FromBody] Student updatedStudent)
+        {
+            var existingStudent = _studentService.GetSingleStudent(id);
 
+            if (existingStudent == null)
+            {
+                return NotFound($"Student with ID {id} not found for update.");
+            }
 
-        //DELETE
-        //Create DeleteStudent endpoint here
-        //Accept "id" as parameter
-       
+            // Ensure the ID in the object matches the ID in the URL
+            updatedStudent.Id = id;
+            _studentService.UpdateStudent(updatedStudent);
+
+            return Ok(new { message = "Student updated successfully." });
+        }
+
+        // DELETE: api/Student/5
+        [HttpDelete("{id}")]
+        public IActionResult DeleteStudent(int id)
+        {
+            var existingStudent = _studentService.GetSingleStudent(id);
+
+            if (existingStudent == null)
+            {
+                return NotFound($"Student with ID {id} not found.");
+            }
+
+            _studentService.DeleteStudent(id);
+
+            return Ok(new { message = $"Student with ID {id} deleted successfully." });
+        }
     }
 }
