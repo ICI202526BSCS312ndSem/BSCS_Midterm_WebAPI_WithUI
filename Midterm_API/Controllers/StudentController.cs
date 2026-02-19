@@ -46,13 +46,18 @@ namespace Midterm_API.Controllers
         {
             if(student == null)
             {
+                return StatusCode(404);
+            }
+            if(student.Section <= -1 || student.Section <= -1)
+            {
                 return StatusCode(400);
             }
-
-            _studentService.CreateStudent(student);
-            return StatusCode(201);
+            else
+            {
+                _studentService.CreateStudent(student);
+                return StatusCode(201);
+            }
         }
-
 
 
         //PUT
