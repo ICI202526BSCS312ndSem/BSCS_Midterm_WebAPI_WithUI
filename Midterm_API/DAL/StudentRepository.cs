@@ -1,4 +1,4 @@
-﻿using Midterm_API.Entities;
+using Midterm_API.Entities;
 
 namespace Midterm_API.DAL
 {
@@ -20,6 +20,15 @@ namespace Midterm_API.DAL
                 Course = "BSCS",
                 Year = 2,
                 Section = 4 },
+			new Student
+			{
+				Id = 3,
+				StudentNumber = "2026-0003",
+				FullName = "Seph Pompurini",
+				Course = "BSCS",
+				Year = 1,
+				Section = 4,
+			}
         };
 
         public IEnumerable<Student> GetAll() => _students;
@@ -43,6 +52,6 @@ namespace Midterm_API.DAL
                 existing.Section = Student.Section;
             }
         }
-        public void Delete(int id) => _students.RemoveAll(p => p.Id == id);
-    }
+		public void Delete(int id) => _students.RemoveAll(p => p.Id == id);
+	}
 }
