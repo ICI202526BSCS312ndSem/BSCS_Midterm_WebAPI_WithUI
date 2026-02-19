@@ -18,7 +18,7 @@ namespace Midterm_API.Controllers
 		[HttpGet]
 		public IActionResult Get()
 		{
-			return Ok(_studentService.GetAllStudents);
+			return Ok(_studentService.GetAllStudents());
 		}
 
 		//GET
