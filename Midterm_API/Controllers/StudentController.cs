@@ -8,7 +8,7 @@ namespace Midterm_API.Controllers
     [ApiController]
     public class StudentController : ControllerBase
     {
-        private readonly StudentService _studentService;
+        private StudentService _studentService;
 
         public StudentController(StudentService studentService)
         {
@@ -18,29 +18,59 @@ namespace Midterm_API.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_studentService.GetAllStudents());
+            var students = _studentService.GetAllStudents();
+            return Ok(students);
         }
 
-        //GET
-        //Create GetSingle endpoint here with "id" as parameter
-        //return OK if found, NotFound if not found
+        // get single
+        [HttpGet("{id}")]
+        public IActionResult GetSingle(int id)
+        {
+            var student = _studentService.GetSingleStudent(id);
 
+            if (student == null)
+            {
+                return NotFound();
+            }
 
-        //POST
-        //Create AddStudent endpoint here
-        //Accept Student object as parameter
+            return Ok(student);
+        }
 
+        // add student
+        [HttpPost]
+        public IActionResult AddStudent([FromBody] Student student)
+        {
+            if (student == null)
+            {
+                return BadRequest();
+            }
 
+            _studentService.AddStudent(student);
+            return Ok(student);
+        }
 
-        //PUT
-        //Create UpdateStudent endpoint here
-        //Accept "id" as parameter and Student object as body
+        // update student
+        [HttpPut("{id}")]
+        public IActionResult UpdateStudent(int id, [FromBody] Student student)
+        {
+            if (student == null)
+            {
+                return BadRequest();
+            }
 
+            student.Id = id;   
 
+            _studentService.UpdateStudent(student);
 
-        //DELETE
-        //Create DeleteStudent endpoint here
-        //Accept "id" as parameter
-       
+            return Ok();
+        }
+
+        // delete student
+        [HttpDelete("{id}")]
+        public IActionResult DeleteStudent(int id)
+        {
+            _studentService.DeleteStudent(id);
+            return Ok();
+        }
     }
 }

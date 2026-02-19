@@ -5,7 +5,7 @@ namespace Midterm_API.Services
 {
     public class StudentService
     {
-        private readonly StudentRepository _repository;
+        private StudentRepository _repository;
 
         public StudentService(StudentRepository repository)
         {
@@ -14,25 +14,38 @@ namespace Midterm_API.Services
 
         public IEnumerable<Student> GetAllStudents()
         {
-            return _repository.GetAll().OrderByDescending(p => p.Id);
+            var list = _repository.GetAll();
+            return list.OrderBy(x => x.Id);
         }
 
-        //Create GetSingleStudent method here
-        //Accept "id" as parameter and return Student
+        // get single student
+        public Student GetSingleStudent(int id)
+        {
+            return _repository.GetById(id);
+        }
 
+        // add student
+        public void AddStudent(Student student)
+        {
+            if (student != null)
+            {
+                _repository.Add(student);
+            }
+        }
 
+        // update student
+        public void UpdateStudent(Student student)
+        {
+            if (student != null)
+            {
+                _repository.Update(student);
+            }
+        }
 
-        //Create AddStudent method here
-        //Accept Student object as parameter and return void
-
-
-
-        //Create UpdateStudent method here
-        //Accept Student object as parameter and return void
-
-
-
-        //Create DeleteStudent method here
-        //Accept "id" as parameter and return void
+        // delete student
+        public void DeleteStudent(int id)
+        {
+            _repository.Delete(id);
+        }
     }
 }
