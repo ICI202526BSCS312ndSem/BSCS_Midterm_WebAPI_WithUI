@@ -38,7 +38,7 @@ namespace Midterm_API.Controllers
         public IActionResult Post([FromBody] Student student)
         {
             _studentService.CreateStudent(student);
-            return Ok();
+            return StatusCode(201);
         }
         //Accept Student object as parameter
 
@@ -51,7 +51,7 @@ namespace Midterm_API.Controllers
         {
             student.Id = id;
            _studentService.UpdateStudent(student);
-            return Ok(id);
+            return StatusCode(204);
         }
         //Accept "id" as parameter and Student object as body
 
