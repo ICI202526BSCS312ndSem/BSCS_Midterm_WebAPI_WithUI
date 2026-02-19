@@ -21,26 +21,39 @@ namespace Midterm_API.Controllers
             return Ok(_studentService.GetAllStudents());
         }
 
-        //GET
-        //Create GetSingle endpoint here with "id" as parameter
-        //return OK if found, NotFound if not found
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            var student = _studentService.GetSingleStudent(id);
+            return student == null ? NotFound() : Ok();
+        }
 
+        [HttpPost]
+        public IActionResult Post([FromBody] Student student)
+        {
+            _studentService.AddStudent(student);
+            return Created();
+        }
 
-        //POST
-        //Create AddStudent endpoint here
-        //Accept Student object as parameter
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody] Student student)
+        {
+            student = _studentService.GetSingleStudent(id);
+            student.Id = id;
+            _studentService.UpdateStudent(student);
+            return Ok();
+        }
 
-
-
-        //PUT
-        //Create UpdateStudent endpoint here
-        //Accept "id" as parameter and Student object as body
-
-
-
-        //DELETE
-        //Create DeleteStudent endpoint here
-        //Accept "id" as parameter
-       
+        [HttpDelete("{id}")]
+        public IActionResult Delete (int id)
+        {
+            var studentExist = _studentService.GetSingleStudent(id);
+            if (studentExist == null)
+            {
+                return NotFound();
+            }
+            _studentService.DeleteStudent(id);
+            return Ok();
+        }
     }
 }
