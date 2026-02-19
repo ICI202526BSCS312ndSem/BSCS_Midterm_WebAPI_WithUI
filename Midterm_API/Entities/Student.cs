@@ -1,4 +1,4 @@
-﻿namespace Midterm_API.Entities
+namespace Midterm_API.Entities
 {
     public class Student
     {
