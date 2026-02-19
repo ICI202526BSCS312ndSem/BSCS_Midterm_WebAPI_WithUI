@@ -66,7 +66,6 @@ namespace Midterm_API.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] Student student)
         {
-            student.Id = id;
             if (student == null)
             {
                 return StatusCode(404);
@@ -77,11 +76,11 @@ namespace Midterm_API.Controllers
             }
             else
             {
+                student.Id = id;
                 _studentService.UpdateStudent(student);
                 return StatusCode(200);
             }
         }
-
 
 
         //DELETE
