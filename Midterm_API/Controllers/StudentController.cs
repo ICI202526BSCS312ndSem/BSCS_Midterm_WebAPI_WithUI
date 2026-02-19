@@ -30,7 +30,7 @@ namespace Midterm_API.Controllers
             var existingStudent = _studentService.GetSingleStudent(id);
             if (existingStudent != null)
             {
-                return StatusCode(200, _studentService);
+                return Ok(existingStudent);
             }
             else
             {
