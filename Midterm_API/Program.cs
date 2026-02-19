@@ -27,7 +27,7 @@ namespace Midterm_API
             {
                 options.AddPolicy("AllowFrontend", policy =>
                 {
-                    policy.WithOrigins("http://localhost:7057", "https://localhost:7056")
+                    policy.WithOrigins("http://localhost:7056", "https://localhost:7056")
                           .AllowAnyHeader()
                           .AllowAnyMethod();
                 });
